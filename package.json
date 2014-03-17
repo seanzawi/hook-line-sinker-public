@@ -15,8 +15,9 @@
     "server",
     "auto-deploy"
   ],
-  "dependencies": 
+  "dependencies":
   {
+    "async": "^0.2.10",
     "restify": "^2.6.3",
     "shelljs": "^0.2.6",
     "shell-quote": "^1.4.1",

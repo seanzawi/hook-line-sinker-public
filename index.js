@@ -70,10 +70,10 @@ module.exports = function(options)
 		if(servers[repository])
 		{
 			serverControl.stop(child_server);
-			child_server = serverControl.start(repository, opts.repo[repository].start);
+			child_server = serverControl.start(repository, opts.repo[repository].start, opts.basePath);
 		}
 		else
-			child_server = serverControl.start(repository, opts.repo[repository].start);
+			child_server = serverControl.start(repository, opts.repo[repository].start, opts.basePath);
 		servers[repository] = child_server;
 		next();
 	}
