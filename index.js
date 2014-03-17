@@ -19,7 +19,8 @@ module.exports = function(options)
 	var opts	=
 		{
 			port:		options.port    || 9001,
-			verbose:	(options.verbose == null) ? true : options.verbose
+			verbose:	(options.verbose == null) ? true : options.verbose,
+			basePath:	options.basePath || process.cwd()
 		};
 
 	if(Array.isArray(options.repo))
@@ -41,11 +42,11 @@ module.exports = function(options)
 		repo_names[path.basename(url.parse(repository.url).pathname, '.git')] = repository;
 	});
 	opts.repo = repo_names;
-	initialize(opts.repo, postServer);
+	initialize(opts, postServer);
 
 	function serverPull(repository, next)
 	{
-		var repo = git(path.join(__dirname, 'hook-line-sinker-repo', repository));
+		var repo = git(path.join(opts.basePath, 'hook-line-sinker-repo', repository));
 		repo.sync(function(err, res)
 		{
 			next();
@@ -54,7 +55,7 @@ module.exports = function(options)
 
 	function serverInstall(repository, next)
 	{
-		var repo = path.join(__dirname, 'hook-line-sinker-repo', repository);
+		var repo = path.join(opts.basePath, 'hook-line-sinker-repo', repository);
 		shell.exec('cd ' + repo + ' && ' + opts.repo[repository].install, function (code, output)
 		{
 			server.emit('log', 'npm install exit code: ' + code);
@@ -123,7 +124,6 @@ module.exports = function(options)
 		res.header('Location', '/list');
 		res.send(302);
 	});
-	server.get('/repo/:name', routes.getRepo);
 	server.post('/repo/:name', routes.postRepo, function(req, res, next){server.emit('commit', req.params.name);});
 	server.get('/results/:name', function(req, res, next) {routes.getList(req, res, next, servers);});
 	server.get('/list', getList);

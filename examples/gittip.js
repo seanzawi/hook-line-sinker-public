@@ -16,7 +16,7 @@ var hook = new Hook(
 
 hook.on('installed', function(server)
 {
-	var dir = path.join(__dirname, '../', 'hook-line-sinker-repo', server);
+	var dir = path.join(process.cwd(), 'hook-line-sinker-repo', server);
 	hdeps(dir, function(err, result)
 	{
 		result.forEach(function(item, index)
