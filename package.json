@@ -1,0 +1,27 @@
+{
+  "name": "githooks",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Git webhook auto-deploy server",
+  "main": "index.js",
+  "scripts": 
+  {
+    "test": "node tests/test.js",
+    "start": "node index.js"
+  },
+  "keywords": 
+  [
+    "webhooks",
+    "deploy",
+    "server",
+    "auto-deploy"
+  ],
+  "dependencies": 
+  {
+    "restify": "^2.6.3",
+    "shelljs": "^0.2.6",
+    "tape": "^2.10.2"
+  },
+  "author": "Sean Zawicki",
+  "license": "BSD-2-Clause"
+}
