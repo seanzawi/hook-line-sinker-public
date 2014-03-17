@@ -1,7 +1,6 @@
 {
-  "name": "githooks",
+  "name": "hook-line-sinker",
   "version": "0.0.0",
-  "private": true,
   "description": "Git webhook auto-deploy server",
   "main": "index.js",
   "scripts": 
@@ -20,8 +19,20 @@
   {
     "restify": "^2.6.3",
     "shelljs": "^0.2.6",
+    "shell-quote": "^1.4.1",
+    "gift": "^0.3.0"
+  },
+  "devDependencies":
+  {
     "tape": "^2.10.2"
   },
   "author": "Sean Zawicki",
-  "license": "BSD-2-Clause"
+  "email" : "seanzawicki@gmail.com",
+  "license": "BSD-2-Clause",
+  "repository" :
+  { 
+    "type" : "git",
+    "url" : "git@github.com:seanzawi/hook-line-sinker-public.git"
+  }
+
 }
